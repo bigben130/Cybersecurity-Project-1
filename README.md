@@ -5,7 +5,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![C:\Users\bubba\OneDrive\Desktop\UWA Boot Camp\Week_13_\Week 13_Resources_README\README\Images](Images/Project_1_Diagram_Ben_Burrell.png)
+![Diagrams/Project_1_Diagram_Ben_Burrell.png](Images/Project_1_Diagram_Ben_Burrell.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml and config file may be used to install only certain pieces of it, such as Filebeat.
 
