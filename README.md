@@ -172,17 +172,17 @@ SSH into the control node and follow the steps below:
 - Copy the elk_install.yml file to /etc/ansible/roles/elk_install.yml
 - Update the hosts file to include the attribute [elk] and then include the IP of the Korean ELK server directly below [elk], it should look like this 
 ```bash 
-- [elk]
-- 10.2.0.4 ansible_python_interpreter=usr/bin/python3
+[elk]
+10.2.0.4 ansible_python_interpreter=usr/bin/python3
 ```
 
 - Run the playbook by using the command 
 ```bash
-- ansible-playbook /etc/ansible/roles/elk_install.yml
+ansible-playbook /etc/ansible/roles/elk_install.yml
 ```
-Then navigate in your browser using your elk server IP to http://[your elkserver]:5601/app/kibana to check that the installation worked as expected, in our case we will use http://10.2.0.4:5601/app/kibana. If it is working correctly we should see the following;
+- Then navigate in your browser using your elk server public IP to http://[your elkserver]:5601/app/kibana to check that the installation worked as expected, in our case we will use http://52.141.5.171:5601/app/kibana. If it is working correctly we should see the following;
 
-
+<img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Screen%20Shot.png">
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
