@@ -150,7 +150,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/ELK_docker_ps.png)
+![TODO: Update the path with the name of your screenshot of docker ps output](Diagrams/ELK_docker_ps.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -169,9 +169,20 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the elk_install.yml file to /etc/ansible/roles/elk_install.yml
+- Update the hosts file to include the attribute [elk] and then include the IP of the Korean ELK server directly below [elk], it should look like this 
+```bash 
+- [elk]
+- 10.2.0.4 ansible_python_interpreter=usr/bin/python3
+```
+
+- Run the playbook by using the command 
+```bash
+- ansible-playbook /etc/ansible/roles/elk_install.yml
+```
+Then navigate in your browser using your elk server IP to http://[your elkserver]:5601/app/kibana to check that the installation worked as expected, in our case we will use http://10.2.0.4:5601/app/kibana. If it is working correctly we should see the following;
+
+
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
