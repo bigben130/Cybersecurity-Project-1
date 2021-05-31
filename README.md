@@ -88,44 +88,45 @@ The playbook implements the following tasks:
     tasks:
 ```
 - We use apt module in Linux to install **docker.io** and **python3-pip** and then **docker** which is a docker python pip module
-
-      - name: Install docker.io
-        apt:
-          update_cache: yes
-          force_apt_get: yes
-          name: docker.io
-          state: present
-      - name: Install python3-pip
-        apt:
-          force_apt_get: yes
-          name: python3-pip
-          state: present
-      - name: Install Docker module
-        pip:
-          name: docker
-          state: present
+```bash
+  - name: Install docker.io
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: docker.io
+        state: present
+  - name: Install python3-pip
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+  - name: Install Docker module
+      pip:
+        name: docker
+        state: present
+```
 - We use **sysctl** to increase memory to make sure that ELK can run effectively
-      
-      - name: Use more memory
-        sysctl:
-           name: vm.max_map_count
-           value: "262144"
-           state: present
-           reload: yes
-
+```bash 
+  - name: Use more memory
+      sysctl
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
+```
 - We now launch the **docker container** and expose it on the list of **published ports** we have created
-
-      - name: download and launch a docker elk container
-        docker_container:
-          name: elk
-          image: sebp/elk:761
-          state: started
-          restart_policy: always
-          published_ports:
-            -  5601:5601
-            -  9200:9200
-            -  5044:5044
-
+```bash
+  - name: download and launch a docker elk container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          -  5601:5601
+          -  9200:9200
+          -  5044:5044
+```
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
 ![TODO: Update the path with the name of your screenshot of docker ps output](Diagrams/ELK_docker_ps.png)
