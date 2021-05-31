@@ -200,5 +200,5 @@ _As a **Bonus**, provide the specific commands the user will need to run to down
 Filebeat
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb
 metricbeat
-
+curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4.0-amd64.deb
 
