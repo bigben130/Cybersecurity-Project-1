@@ -7,8 +7,9 @@ The files in this repository were used to configure the network depicted below.
 
 ![Cybersecurity-Project-1/Diagrams/Project_1_Diagram_Ben_Burrell.png](Diagrams/Project_1_Diagram_Ben_Burrell.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml and config file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, we can select portions of the yml and config file that may be used to install only certain pieces of it, such as Filebeat.
 
+This is an example of a filebeat.yml file contents:
 ```bash
 ---
   - name: installing and launching filebeat
@@ -55,7 +56,7 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly available, in addition to restricting traffic to the network.
-- **Load Balancers:** A load balancer can add additional layers of security to web VMs with minimal changes, it does protect against DDos attacks by distributing traffic evenly against the nominated VMs in the backend pool but it would also be possible to add additional security measures here such as authentication of user access via user name and password before further access, the deployment of a web application firewall (WAP) to protect applications from emerging threats, it could also be used to simplify payment card industry (PCI) compliance if this was applicable 
+- **Load Balancers:** A load balancer can add additional layers of security to web VMs with minimal changes, it does protect against DDos attacks by distributing traffic evenly against the nominated VMs in the backend pool but it would also be possible to add additional security measures here such as authentication of user access via user name and password before further access or the deployment of a web application firewall (WAP) to protect applications from emerging threats.
 - **Jump Box:** An advantage of using a secure computer jump box is that all admins must first connect to it before launching any administrative task or use it as an origination point to connect to other servers or untrusted environments. Having restricted administrative access in this way can make a network more secure, it can also simplify the execution of tasks across a network.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data and system logs.
@@ -79,10 +80,10 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the ELK Server machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- A singular workstation public IP address seeking a destination port of 5601
+- A singular workstation public IP address (this address is pre-registered in the ELK machines security rules), it will be seeking a destination port of 5601.
 
 Machines within the network can only be accessed by Jump Box Provisioner.
-- Jump Box Provisioner IP: 10.1.0.4 on SSH port 22
+- Jump Box Provisioner IP: 10.1.0.4 on SSH port 22, this access is provided in the security rules covering the network. 
 
 A summary of the access policies in place can be found in the table below.
 
@@ -159,7 +160,7 @@ This ELK server is configured to monitor the following machines:
 - Web-3 : 10.1.0.7
 
 We have installed the following Beats on these machines:
-- We successfully installed Filebeat and Metricbeat as part of our ELK stack, the relavant information from Web-1, Web-2, and Web-3 is transported to the ELK server.
+- We successfully installed **Filebeat** and **Metricbeat** as part of our ELK stack, the relavant information from Web-1, Web-2, and Web-3 is transported to the ELK server.
 
 These Beats allow us to collect the following information from each machine:
 - **Filebeat:** collects log events such as SSH logins, Sudo commands, and syslogs. we can use this data to see who is accessing the system and how they are doing it as well as what they are doing in the system. 
@@ -169,9 +170,15 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the elk_install.yml file to /etc/ansible/roles/elk_install.yml
-- Update the hosts file to include the attribute [elk] and then include the IP of the Korean ELK server directly below [elk], it should look like this 
+- Copy the **elk_install.yml** file to **/etc/ansible/roles/elk_install.yml**
+- Update the hosts file to include the attribute **[elk]** underneath the **[webservers]** and their IPs and then include the IP of the Korean ELK server directly below [elk]. In the .yml file to be installed it should nominate the goup of machines that the file will be installed on, it will do this in the first section of the .yml file under the section for **hosts:**. For examle the **elk_install.yml** will have **hosts: elk** nominated, for **filebeat** or **metricbeat** it would have **hosts: webservers** nominated. Once the ansible **hosts** file is updated it should look like this: 
 ```bash 
+# /etc/ansible/hosts
+[webservers]
+10.1.0.5 ansible_python_interpreter=usr/bin/python3
+10.1.0.6 ansible_python_interpreter=usr/bin/python3
+10.1.0.7 ansible_python_interpreter=usr/bin/python3
+
 [elk]
 10.2.0.4 ansible_python_interpreter=usr/bin/python3
 ```
@@ -180,7 +187,7 @@ SSH into the control node and follow the steps below:
 ```bash
 ansible-playbook /etc/ansible/roles/elk_install.yml
 ```
-- Then navigate in your browser using your elk server public IP to http://[your elkserver]:5601/app/kibana to check that the installation worked as expected, in our case we will use http://52.141.5.171:5601/app/kibana. If it is working correctly we should see the following;
+- Then navigate in your browser using your elk server public IP to **http://[your elkserver]:5601/app/kibana** to check that the installation worked as expected, in our case we will use **http://52.141.5.171:5601/app/kibana**. If it is working correctly we should see the following;
 
 <img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Screen%20Shot.png">
 
