@@ -20,7 +20,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -33,7 +33,7 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly available, in addition to restricting traffic to the network.
-- **Load Balancers:** A load balancer can add additional layers of security to web VMs with minimal changes, it does protect against DDos attacks by distributing traffic evenly against the nominated VMs in the backend pool but it would also be possible to add additional security measures here such as authentication of user access via user name and password before further access or the deployment of a web application firewall (WAP) to protect applications from emerging threats.
+- **Load Balancers:** A load balancer can add additional layers of security to web VMs with minimal changes, it does protect against DDos attacks by distributing traffic evenly against the nominated VMs in the backend pool but it would also be possible to add additional security measures here such as authentication of user access via username and password before further access or the deployment of a web application firewall (WAP) to protect applications from emerging threats.
 - **Jump Box:** An advantage of using a secure computer jump box is that all admins must first connect to it before launching any administrative task or use it as an origination point to connect to other servers or untrusted environments. Having restricted administrative access in this way can make a network more secure, it can also simplify the execution of tasks across a network.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data and system logs.
@@ -75,11 +75,11 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because this limits the time and human error concerns in successful deployment. Ansible allows us to deploy multiteir apps more easily, more quickly and with consistency. Ansible's ability for automatic configuration only requires us to list the tasks we need to be completed in the correct syntax and it will execute the tasks and make the nessary systems adjustments to reflect the requests from the playbook file.
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because this limits the time and human error concerns in successful deployment. Ansible allows us to deploy multitier apps more easily, more quickly and with consistency. Ansible's ability for automatic configuration only requires us to list the tasks we need to be completed in the correct syntax and it will execute the tasks and make the necessary systems adjustments to reflect the requests from the playbook file.
 
 The playbook implements the following tasks:
 
-- We **name** this configeration and specifiy the **hosts** to which we want to deploy it, we also name a different **remote user** 
+- We **name** this configuration and specify the **hosts** to which we want to deploy it, we also name a different **remote user** 
 ```bash
   - name: Configure Elk VM with Docker
     hosts: elk
@@ -137,18 +137,18 @@ This ELK server is configured to monitor the following machines:
 - Web-3 : 10.1.0.7
 
 We have installed the following Beats on these machines:
-- We successfully installed **Filebeat** and **Metricbeat** as part of our ELK stack, the relavant information from Web-1, Web-2, and Web-3 is transported to the ELK server.
+- We successfully installed **Filebeat** and **Metricbeat** as part of our ELK stack, the relevant information from Web-1, Web-2, and Web-3 is transported to the ELK server.
 
 These Beats allow us to collect the following information from each machine:
 - **Filebeat:** collects log events such as SSH logins, Sudo commands, and syslogs. we can use this data to see who is accessing the system and how they are doing it as well as what they are doing in the system. 
-- **Metricbeat:** collects metrics for the system, the host, and the containers. This includes metrics on the CPU, memory, processes, and network traffic to name a few. This helps us to see if the systems are executing unusual processes or monitior any unusual network traffic patterns. 
+- **Metricbeat:** collects metrics for the system, the host, and the containers. This includes metrics on the CPU, memory, processes, and network traffic to name a few. This helps us to see if the systems are executing unusual processes or monitor any unusual network traffic patterns. 
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
 - Copy the **elk_install.yml** file to **/etc/ansible/roles/elk_install.yml**
-- Update the **hosts** file to include the attribute **[elk]** underneath the **[webservers]** and their IPs and then include the IP of the Korean ELK server directly below **[elk]**. In the .yml file to be installed it should nominate the goup of machines that the file will be installed on, it will do this in the first section of the .yml file under the section for **hosts:**. For examle the **elk_install.yml** will have **hosts: elk** nominated, for **filebeat** or **metricbeat** it would have **hosts: webservers** nominated. Once the ansible **hosts** file is updated it should look like this: 
+- Update the **hosts** file to include the attribute **[elk]** underneath the **[webservers]** and their IPs and then include the IP of the Korean ELK server directly below **[elk]**. In the .yml file to be installed it should nominate the group of machines that the file will be installed on, it will do this in the first section of the .yml file under the section for **hosts:**. For example the **elk_install.yml** will have **hosts: elk** nominated, for **filebeat** or **metricbeat** it would have **hosts: webservers** nominated. Once the ansible **hosts** file is updated it should look like this: 
 ```bash 
 # /etc/ansible/hosts
 [webservers]
@@ -164,7 +164,7 @@ SSH into the control node and follow the steps below:
 ```bash
 ansible-playbook /etc/ansible/roles/elk_install.yml
 ```
-- Then navigate in your browser using your elk server public IP to **http://[your elkserver]:5601/app/kibana** to check that the installation worked as expected, in our case we will use **http://52.141.5.171:5601/app/kibana**. If it is working correctly we should see the following;
+- Then navigate in your browser using your elk server public IP to **http://[your elk_server]:5601/app/kibana** to check that the installation worked as expected, in our case we will use **http://52.141.5.171:5601/app/kibana**. If it is working correctly we should see the following;
 
 <img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Screen%20Shot.png">
 
