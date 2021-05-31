@@ -170,7 +170,7 @@ ansible-playbook /etc/ansible/roles/elk_install.yml
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 
-Downloading Filebeat
+### Downloading Filebeat
 
 For the filebeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the tab "add log data", then locate the "system log" box and click, then under the 'Getting Started' heading we find the "DEB" tab and click, we can see here that the comands to download and install filebeat.
 
@@ -200,7 +200,15 @@ setup.kibaba:
 ```
 completed copies of the [filebeat-playbook.yml](Ansible/filebeat-playbook.yml) amd [filebeat-config.yml](Ansible/filebeat-config.yml) can be viewed here. 
 
-Downloading Metricbeat
+The downloaded and updated files need to be saved in the apropriate loactions on the **Jumpbox ansible container** so that they will run correctly, the **filebeat-config.yml** file needs to be saved in **/etc/ansible/files** and the **filebeat-playbook.yml** needs to be saved in **/etc/ansible/roles**. 
+
+We can now run the filebeat-playbook.yml with this command while in the **Jumpbox ansible container**
+```bash
+ansible-playbook /etc/ansible/roles/filebeat-playbook.yml
+```
+After it has successfully completed we can check that the filebeat information from Web-1, Web-2, and Web-3 is successfully being recieved by Kibana on our ELK server by navigating in Kibana to the **"check data"** box in the "System Logs" "Getting Started" guide, if it is successfulf we should see a green box appear with "Data successfully recieved from this module" 
+
+### Downloading Metricbeat
 
 For the metricbeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the tab "add metric data", then locate the "docker metrics" box and click, then under the 'Getting Started' heading we find the "DEB" tab and click, we can see here that the comands to download and install metricbeat.
 
@@ -218,17 +226,37 @@ curl -L -O  https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557
 ```
 and as advised in the "docker metrics" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of metricbeat.
 ```bash 
+setup.kibaba:
+  host: "10.2.0.4:5601"
+```
+and also
+```bash 
 output.elasticsearch:
   hosts: ["10.2.0.4:9200"] 
   username: "elastic"
   password: "changeme"
 ```
-and also
-```bash 
-setup.kibaba:
-  host: "10.2.0.4:5601"
-```
 completed copies of the [metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml) amd [metricbeat-config.yml](Ansible/metricbeat-config.yml) can be viewed here.
 
+The downloaded and updated files need to be saved in the apropriate loactions on the **Jumpbox ansible container** so that they will run correctly, the **metricbeat-config.yml** file needs to be saved in **/etc/ansible/files** and the **metricbeat-playbook.yml** needs to be saved in **/etc/ansible/roles**. 
 
+We can now run the metricbeat-playbook.yml with this command while in the **Jumpbox ansible container**
+```bash
+ansible-playbook /etc/ansible/roles/metricbeat-playbook.yml
+```
+After it has successfully completed we can check that the filebeat information from Web-1, Web-2, and Web-3 is successfully being recieved by Kibana on our ELK server by navigating in Kibana to the **"check data"** box in the "Docker metrics" "Getting Started" guide, if it is successfulf we should see a green box appear with "Data successfully recieved from this module" 
+
+Other comands used: 
+|**Command   | **Purpose  |
+|---|---|
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 
