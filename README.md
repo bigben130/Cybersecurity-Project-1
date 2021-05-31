@@ -212,6 +212,8 @@ ansible-playbook /etc/ansible/roles/filebeat-playbook.yml
 ```
 After it has successfully completed we can check that the filebeat information from Web-1, Web-2, and Web-3 is successfully being recieved by Kibana on our ELK server by navigating in Kibana to the **"check data"** box in the "System Logs" "Getting Started" guide, if it is successfulf we should see a green box appear with "Data successfully recieved from this module" 
 
+<img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Filebeat%20Check%20Data%20Screen%20Shot.png">
+
 ### Downloading Metricbeat
 
 For the metricbeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the tab "add metric data", then locate the "docker metrics" box and click, then under the 'Getting Started' heading we find the "DEB" tab and click, we can see here that the comands to download and install metricbeat.
