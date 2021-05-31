@@ -249,14 +249,14 @@ After it has successfully completed we can check that the filebeat information f
 Other comands used: 
 |Command   |Purpose  |
 |---|---|
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
+|sudo docker container ps   |Lists active containers   |
+|apt install docker.io   |   |
+|apt install python3-pip   |   |
+|ansible webservers -m ping   |   |
+|sudo docker ps -a   |   |
+|ssh-keygen   |   |
+|sudo docker start [container name]   |   |
+|sudo docker attach [container name]   |   |
 |   |   |
 |   |   |
 
