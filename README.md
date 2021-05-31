@@ -169,9 +169,10 @@ ansible-playbook /etc/ansible/roles/elk_install.yml
 <img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Screen%20Shot.png">
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+
 Downloading Filebeat
-For the filebeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the lab "add log data", then locate the "system log" box and click, then under the 'Getting Started' heading we fin the DEB tab and click.
-We can see here that the comands to download and install filebeat
+
+For the filebeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the tab "add log data", then locate the "system log" box and click, then under the 'Getting Started' heading we find the "DEB" tab and click, we can see here that the comands to download and install filebeat.
 
 Download
 ```bash
@@ -181,24 +182,53 @@ Install
 ```bash
 sudo dpkg -i filebeat-7.4.0-amd64.deb
 ```
-before we run this playbook we must first update the configuration file appropriatly, we can down load the filebeat configuration file using this command
+before we run this playbook we must first update the configuration file appropriatly, we can download the filebeat configuration file using this command
 ```bash 
 curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat
 ```
-and as advised in the getting started guide we must updat two specific areas of the config file to ensure the smooth installation of filebeat
+and as advised in the "System Logs" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of filebeat.
 ```bash 
 output.elasticsearch:
-  hosts: 
-  username:
-  password:
+  hosts: ["10.2.0.4:9200"] 
+  username: "elastic"
+  password: "changeme"
 ```
 and also
 ```bash 
 setup.kibaba:
-  host: 
+  host: "10.2.0.4:5601"
 ```
+completed copies of the [filebeat-playbook.yml](Ansible/filebeat-playbook.yml) amd [filebeat-config.yml](Ansible/filebeat-config.yml) can be viewed here. 
 
-metricbeat
+Downloading Metricbeat
+
+For the metricbeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the tab "add metric data", then locate the "docker metrics" box and click, then under the 'Getting Started' heading we find the "DEB" tab and click, we can see here that the comands to download and install metricbeat.
+
+Download
+```bash
 curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4.0-amd64.deb
+```
+Install
+```bash
+sudo dpkg -i metricbeat-7.4.0-amd64.deb
+```
+before we run this playbook we must first update the configuration file appropriatly, we can download the metricbeat configuration file using this command
+```bash 
+curl -L -O  https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat
+```
+and as advised in the "docker metrics" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of metricbeat.
+```bash 
+output.elasticsearch:
+  hosts: ["10.2.0.4:9200"] 
+  username: "elastic"
+  password: "changeme"
+```
+and also
+```bash 
+setup.kibaba:
+  host: "10.2.0.4:5601"
+```
+completed copies of the [metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml) amd [metricbeat-config.yml](Ansible/metricbeat-config.yml) can be viewed here.
+
 
 
