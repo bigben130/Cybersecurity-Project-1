@@ -7,8 +7,11 @@ The files in this repository were used to configure the network depicted below.
 
 ![Cybersecurity-Project-1/Diagrams/Project_1_Diagram_Ben_Burrell.png](Diagrams/Project_1_Diagram_Ben_Burrell.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, we can select portions of the yml and config file that may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, we can select portions of the yml and config files that may be used to install only certain pieces of it, such as Filebeat.
 
+- [Ansible Playbook](Ansible/ansible-playbook.yml)
+- [Ansible Configuration File](Ansible/ansible.cfg)
+- [Ansible Hosts File](Ansible/ansible_hosts_file)
 - [Ansible ELK Installation and ELK VM Configuration](Ansible/install-elk.yml)
 - [Ansible Filebeat Playbook](Ansible/filebeat-playbook.yml)
 - [Ansible Filebeat Configuration File](Ansible/filebeat-config.yml)
@@ -145,7 +148,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the **elk_install.yml** file to **/etc/ansible/roles/elk_install.yml**
-- Update the hosts file to include the attribute **[elk]** underneath the **[webservers]** and their IPs and then include the IP of the Korean ELK server directly below [elk]. In the .yml file to be installed it should nominate the goup of machines that the file will be installed on, it will do this in the first section of the .yml file under the section for **hosts:**. For examle the **elk_install.yml** will have **hosts: elk** nominated, for **filebeat** or **metricbeat** it would have **hosts: webservers** nominated. Once the ansible **hosts** file is updated it should look like this: 
+- Update the **hosts** file to include the attribute **[elk]** underneath the **[webservers]** and their IPs and then include the IP of the Korean ELK server directly below **[elk]**. In the .yml file to be installed it should nominate the goup of machines that the file will be installed on, it will do this in the first section of the .yml file under the section for **hosts:**. For examle the **elk_install.yml** will have **hosts: elk** nominated, for **filebeat** or **metricbeat** it would have **hosts: webservers** nominated. Once the ansible **hosts** file is updated it should look like this: 
 ```bash 
 # /etc/ansible/hosts
 [webservers]
@@ -164,11 +167,6 @@ ansible-playbook /etc/ansible/roles/elk_install.yml
 - Then navigate in your browser using your elk server public IP to **http://[your elkserver]:5601/app/kibana** to check that the installation worked as expected, in our case we will use **http://52.141.5.171:5601/app/kibana**. If it is working correctly we should see the following;
 
 <img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Screen%20Shot.png">
-
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 Filebeat
