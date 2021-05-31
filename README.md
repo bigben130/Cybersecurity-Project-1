@@ -186,7 +186,11 @@ before we run this playbook we must first update the configuration file appropri
 ```bash 
 curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat
 ```
-and as advised in the "System Logs" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of filebeat.
+and as advised in the "System Logs" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of filebeat. To access the file contents we will use command
+```bash
+nano filebeat-config.yml
+```
+now we can update the following area
 ```bash 
 output.elasticsearch:
   hosts: ["10.2.0.4:9200"] 
@@ -224,7 +228,11 @@ before we run this playbook we must first update the configuration file appropri
 ```bash 
 curl -L -O  https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat
 ```
-and as advised in the "docker metrics" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of metricbeat.
+and as advised in the "docker metrics" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of metricbeat. To access the file contents we will use command
+```bash
+nano metricbeat-config.yml
+```
+now we can update the following area
 ```bash 
 setup.kibaba:
   host: "10.2.0.4:5601"
@@ -247,18 +255,4 @@ ansible-playbook /etc/ansible/roles/metricbeat-playbook.yml
 After it has successfully completed we can check that the filebeat information from Web-1, Web-2, and Web-3 is successfully being recieved by Kibana on our ELK server by navigating in Kibana to the **"check data"** box in the "Docker metrics" "Getting Started" guide, if it is successfulf we should see a green box appear with "Data successfully recieved from this module" 
 
 <img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Metricbeat%20Check%20Data%20Screen%20Shot.png">
-
-Other comands used: 
-|Command   |Purpose  |
-|---|---|
-|sudo docker container ps   |Lists active containers   |
-|apt install docker.io   |   |
-|apt install python3-pip   |   |
-|ansible webservers -m ping   |   |
-|sudo docker ps -a   |   |
-|ssh-keygen   |   |
-|sudo docker start [container name]   |   |
-|sudo docker attach [container name]   |   |
-|   |   |
-|   |   |
 
