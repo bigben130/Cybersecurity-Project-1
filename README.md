@@ -169,8 +169,6 @@ ansible-playbook /etc/ansible/roles/elk_install.yml
 
 <img src="https://github.com/bigben130/Cybersecurity-Project-1/blob/main/Diagrams/Korea-VM-ELK%20Kibana%20Screen%20Shot.png">
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
-
 ### Downloading Filebeat
 
 For the filebeat playbook we can access the file from the kibana site we accessed at http://52.141.5.171:5601/app/kibana, we will now find the tab "add log data", then locate the "system log" box and click, then under the 'Getting Started' heading we find the "DEB" tab and click, we can see here that the comands to download and install filebeat.
