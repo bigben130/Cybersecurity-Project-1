@@ -246,6 +246,8 @@ ansible-playbook /etc/ansible/roles/metricbeat-playbook.yml
 ```
 After it has successfully completed we can check that the filebeat information from Web-1, Web-2, and Web-3 is successfully being recieved by Kibana on our ELK server by navigating in Kibana to the **"check data"** box in the "Docker metrics" "Getting Started" guide, if it is successfulf we should see a green box appear with "Data successfully recieved from this module" 
 
+
+
 Other comands used: 
 |Command   |Purpose  |
 |---|---|
