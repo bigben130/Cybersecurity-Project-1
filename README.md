@@ -186,7 +186,7 @@ before we run this playbook we must first update the configuration file appropri
 ```bash 
 curl -L -O https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat
 ```
-and as advised in the "System Logs" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of filebeat. To access the file contents we will use command
+This file should be named filebeat-config.yml (rename this file if it does not appear so) and as advised in the "System Logs" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of filebeat. To access the file contents we will use command
 ```bash
 nano filebeat-config.yml
 ```
@@ -228,7 +228,7 @@ before we run this playbook we must first update the configuration file appropri
 ```bash 
 curl -L -O  https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat
 ```
-and as advised in the "docker metrics" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of metricbeat. To access the file contents we will use command
+This file should be named metricbeat-config.yml (rename this file if it does not appear so) and as advised in the "docker metrics" "Getting Started" guide we must update two specific areas of the config file with the host details to ensure the smooth installation of metricbeat. To access the file contents we will use command
 ```bash
 nano metricbeat-config.yml
 ```
